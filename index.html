@@ -32,21 +32,6 @@
 							</div>
 						</div>
 
-						<div class="row g-3 align-items-center mb-3">
-							<div class="col-2">
-								<label for="namespace" class="col-form-label">Namespace</label>
-							</div>
-							<div class="col-2">
-								<input type="text" class="form-control form-control-sm" id="input_namespace"
-									aria-describedby="input_namespace" placeholder="appveen" value="appveen"/>
-							</div>
-							<div class="col-auto">
-								<span id="input_namespace" class="form-text">Kubernetes namespace where data.stack core services should
-									run.</span>
-								<span class="form-text text-danger">This cannot be changed after installation.</span>
-							</div>
-						</div>
-
 						<div class="progress mb-3" style="height:2px;">
 							<div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0"
 								aria-valuemax="100"></div>
@@ -58,30 +43,11 @@
 							</div>
 							<div class="col-2">
 								<div class="list-group" id="div_list_config_menu">
-									<a href="#" class="list-group-item list-group-item-action" onclick="configNavSelector('Database')">Database</a>
-									<a href="#" class="list-group-item list-group-item-action" onclick="configNavSelector('Docker')">Docker</a>
-									<a href="#" class="list-group-item list-group-item-action" onclick="configNavSelector('Security')">Security</a>
-									<a href="#" class="list-group-item list-group-item-action" onclick="configNavSelector('Access Control')">Access Control</a>
-									<a href="#" class="list-group-item list-group-item-action" onclick="configNavSelector('File Storage')">File Storage</a>
-									<a href="#" class="list-group-item list-group-item-action" onclick="configNavSelector('Hooks')">Hooks</a>
-									<a href="#" class="list-group-item list-group-item-action" onclick="configNavSelector('Misc')">Misc.</a>
+									<!-- auto generated content -->
 								</div>
 							</div>
 							<div class="col-10" id="div_config_card">
-								<div class="card">
-									<div class="card-header fs-5">Database</div>
-									<div class="card-body">
-										<div class="row mb-3 align-items-center">
-											<label for="MONGO_AUTHOR_URL" class="col-sm-2 col-form-label">Author DB URL</label>
-											<div class="col-sm-4">
-												<input type="email" class="form-control form-control-sm" id="input_MONGO_AUTHOR_URL">
-											</div>
-											<div class="col-auto">
-												<span id="input_MONGO_AUTHOR_URL" class="form-text">(MONGO_AUTHOR_URL)</span>
-											</div>
-										</div>
-									</div>
-								</div>
+								<!-- auto generated content -->
 							</div>
 						</div>
 
@@ -94,183 +60,6 @@
 				</div>
 			</div>
 		</div>
-
-		<fieldset>
-			<legend>File storage</legend>
-			<p>
-				<label>STORAGE_AZURE_CONNECTION_STRING</label>
-				<input type="text" name="STORAGE_AZURE_CONNECTION_STRING" id="input_STORAGE_AZURE_CONNECTION_STRING"
-					autocomplete="false">
-				<span>STORAGE_AZURE_CONNECTION_STRING</span>
-			</p>
-			<p>
-				<label>STORAGE_AZURE_CONTAINER</label>
-				<input type="text" name="STORAGE_AZURE_CONTAINER" id="input_STORAGE_AZURE_CONTAINER" autocomplete="false">
-				<span>STORAGE_AZURE_CONTAINER</span>
-			</p>
-			<p>
-				<label>STORAGE_AZURE_SHARED_KEY</label>
-				<input type="text" name="STORAGE_AZURE_SHARED_KEY" id="input_STORAGE_AZURE_SHARED_KEY" autocomplete="false">
-				<span>STORAGE_AZURE_SHARED_KEY</span>
-			</p>
-			<p>
-				<label>STORAGE_AZURE_TIMEOUT</label>
-				<input type="text" name="STORAGE_AZURE_TIMEOUT" id="input_STORAGE_AZURE_TIMEOUT" autocomplete="false">
-				<span>STORAGE_AZURE_TIMEOUT</span>
-			</p>
-			<p>
-				<label>STORAGE_ENGINE</label>
-				<input type="text" name="STORAGE_ENGINE" id="input_STORAGE_ENGINE" autocomplete="false">
-				<span>STORAGE_ENGINE</span>
-			</p>
-		</fieldset>
-
-		<fieldset>
-			<legend>Misc.</legend>
-			<p>
-				<label>API_REQUEST_TIMEOUT</label>
-				<input type="text" name="API_REQUEST_TIMEOUT" id="input_API_REQUEST_TIMEOUT" autocomplete="false">
-				<span>API_REQUEST_TIMEOUT</span>
-			</p>
-			<p>
-				<label>BOOKMARK_OPEN_TAB</label>
-				<input type="text" name="BOOKMARK_OPEN_TAB" id="input_BOOKMARK_OPEN_TAB" autocomplete="false">
-				<span>BOOKMARK_OPEN_TAB</span>
-			</p>
-			<p>
-				<label>CERTIFICATE_COMMON_NAME</label>
-				<input type="text" name="CERTIFICATE_COMMON_NAME" id="input_CERTIFICATE_COMMON_NAME" autocomplete="false">
-				<span>CERTIFICATE_COMMON_NAME</span>
-			</p>
-			<p>
-				<label>CERTIFICATE_COUNTRY</label>
-				<input type="text" name="CERTIFICATE_COUNTRY" id="input_CERTIFICATE_COUNTRY" autocomplete="false">
-				<span>CERTIFICATE_COUNTRY</span>
-			</p>
-			<p>
-				<label>CERTIFICATE_EMAIL</label>
-				<input type="text" name="CERTIFICATE_EMAIL" id="input_CERTIFICATE_EMAIL" autocomplete="false">
-				<span>CERTIFICATE_EMAIL</span>
-			</p>
-			<p>
-				<label>CERTIFICATE_LOCALITY</label>
-				<input type="text" name="CERTIFICATE_LOCALITY" id="input_CERTIFICATE_LOCALITY" autocomplete="false">
-				<span>CERTIFICATE_LOCALITY</span>
-			</p>
-			<p>
-				<label>CERTIFICATE_ORGANIZAION</label>
-				<input type="text" name="CERTIFICATE_ORGANIZAION" id="input_CERTIFICATE_ORGANIZAION" autocomplete="false">
-				<span>CERTIFICATE_ORGANIZAION</span>
-			</p>
-			<p>
-				<label>CERTIFICATE_ORGANIZATION_UNIT</label>
-				<input type="text" name="CERTIFICATE_ORGANIZATION_UNIT" id="input_CERTIFICATE_ORGANIZATION_UNIT"
-					autocomplete="false">
-				<span>CERTIFICATE_ORGANIZATION_UNIT</span>
-			</p>
-			<p>
-				<label>CERTIFICATE_ROOT_DOMAIN</label>
-				<input type="text" name="CERTIFICATE_ROOT_DOMAIN" id="input_CERTIFICATE_ROOT_DOMAIN" autocomplete="false">
-				<span>CERTIFICATE_ROOT_DOMAIN</span>
-			</p>
-			<p>
-				<label>CERTIFICATE_STATE</label>
-				<input type="text" name="CERTIFICATE_STATE" id="input_CERTIFICATE_STATE" autocomplete="false">
-				<span>CERTIFICATE_STATE</span>
-			</p>
-			<p>
-				<label>DATA_STACK_ALLOWED_FILE_TYPE</label>
-				<input type="text" name="DATA_STACK_ALLOWED_FILE_TYPE" id="input_DATA_STACK_ALLOWED_FILE_TYPE"
-					autocomplete="false">
-				<span>DATA_STACK_ALLOWED_FILE_TYPE</span>
-			</p>
-			<p>
-				<label>DATA_STACK_NAMESPACE</label>
-				<input type="text" name="DATA_STACK_NAMESPACE" id="input_DATA_STACK_NAMESPACE" autocomplete="false">
-				<span>DATA_STACK_NAMESPACE</span>
-			</p>
-			<p>
-				<label>DATASTACKENV</label>
-				<input type="text" name="DATASTACKENV" id="input_DATASTACKENV" autocomplete="false">
-				<span>DATASTACKENV</span>
-			</p>
-			<p>
-				<label>DS_FS_MOUNT_PATH</label>
-				<input type="text" name="DS_FS_MOUNT_PATH" id="input_DS_FS_MOUNT_PATH" autocomplete="false">
-				<span>DS_FS_MOUNT_PATH</span>
-			</p>
-			<p>
-				<label>ENCRYPTION_KEY</label>
-				<input type="text" name="ENCRYPTION_KEY" id="input_ENCRYPTION_KEY" autocomplete="false">
-				<span>ENCRYPTION_KEY</span>
-			</p>
-			<p>
-				<label>FQDN</label>
-				<input type="text" name="FQDN" id="input_FQDN" autocomplete="false">
-				<span>FQDN</span>
-			</p>
-			<p>
-				<label>GOOGLE_API_KEY</label>
-				<input type="text" name="GOOGLE_API_KEY" id="input_GOOGLE_API_KEY" autocomplete="false">
-				<span>GOOGLE_API_KEY</span>
-			</p>
-			<p>
-				<label>KEY_SIZE</label>
-				<input type="text" name="KEY_SIZE" id="input_KEY_SIZE" autocomplete="false">
-				<span>KEY_SIZE</span>
-			</p>
-			<p>
-				<label>LOG_LEVEL</label>
-				<input type="text" name="LOG_LEVEL" id="input_LOG_LEVEL" autocomplete="false">
-				<span>LOG_LEVEL</span>
-			</p>
-			<p>
-				<label>MAX_JSON_SIZE</label>
-				<input type="text" name="MAX_JSON_SIZE" id="input_MAX_JSON_SIZE" autocomplete="false">
-				<span>MAX_JSON_SIZE</span>
-			</p>
-			<p>
-				<label>MODE</label>
-				<input type="text" name="MODE" id="input_MODE" autocomplete="false">
-				<span>MODE</span>
-			</p>
-			<p>
-				<label>NE_EVENTS_URL</label>
-				<input type="text" name="NE_EVENTS_URL" id="input_NE_EVENTS_URL" autocomplete="false">
-				<span>NE_EVENTS_URL</span>
-			</p>
-			<p>
-				<label>NODE_ENV</label>
-				<input type="text" name="NODE_ENV" id="input_NODE_ENV" autocomplete="false">
-				<span>NODE_ENV</span>
-			</p>
-			<p>
-				<label>NODE_MAX_HEAP_SIZE</label>
-				<input type="text" name="NODE_MAX_HEAP_SIZE" id="input_NODE_MAX_HEAP_SIZE" autocomplete="false">
-				<span>NODE_MAX_HEAP_SIZE</span>
-			</p>
-			<p>
-				<label>RELEASE</label>
-				<input type="text" name="RELEASE" id="input_RELEASE" autocomplete="false">
-				<span>RELEASE</span>
-			</p>
-			<p>
-				<label>SAVE_FILTER_DEFAULT_MODE_PRIVATE</label>
-				<input type="text" name="SAVE_FILTER_DEFAULT_MODE_PRIVATE" id="input_SAVE_FILTER_DEFAULT_MODE_PRIVATE"
-					autocomplete="false">
-				<span>SAVE_FILTER_DEFAULT_MODE_PRIVATE</span>
-			</p>
-			<p>
-				<label>TLS_REJECT_UNAUTHORIZED</label>
-				<input type="text" name="TLS_REJECT_UNAUTHORIZED" id="input_TLS_REJECT_UNAUTHORIZED" autocomplete="false">
-				<span>TLS_REJECT_UNAUTHORIZED</span>
-			</p>
-			<p>
-				<label>UI_LOGS_TTL</label>
-				<input type="text" name="UI_LOGS_TTL" id="input_UI_LOGS_TTL" autocomplete="false">
-				<span>UI_LOGS_TTL</span>
-			</p>
-		</fieldset>
 
 	</div>
 

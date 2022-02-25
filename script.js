@@ -8,7 +8,9 @@ div_list_config_menu.innerHTML = "";
 const div_config_card = d.i("div_config_card");
 div_config_card.innerHTML = "";
 
-const aws_list = ["row_AWS_ACCESS_KEY_ID", "row_AWS_SECRET_ACCESS_KEY", "row_AWS_DEFAULT_REGION"];
+const aws_docker_list = ["AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY", "AWS_DEFAULT_REGION"];
+
+const azure_file_list = ["STORAGE_AZURE_CONNECTION_STRING", "STORAGE_AZURE_CONTAINER", "STORAGE_AZURE_SHARED_KEY", "STORAGE_AZURE_TIMEOUT"];
 
 // Load config data
 Object.keys(config).forEach(tab => {
@@ -30,7 +32,8 @@ Object.keys(config).forEach(tab => {
 		let label = d.createElement("label");
 		label.setAttribute("for", c.l);
 		label.setAttribute("class", "col-sm-2 col-form-label");
-		label.innerHTML = c.l;
+		label.innerHTML = `${c.l}`;
+		if(c.r) label.innerHTML = `${c.l}<span class="text-danger">*</span>`;
 		
 		let formElement = null;
 		// <select class="form-select form-select-sm" onchange="formSelectChanged()">
@@ -125,14 +128,31 @@ function configNavSelector(id){
 	let card = d.i(`div_card_${id}`);
 	card.style.display = "flex";
 }
-// configNavSelector("Database");
-configNavSelector("Security");
+configNavSelector("Database");
+// configNavSelector("Misc");
+
+function clearDockerData(){
+
+}
+
+function toggleVisibility(list, visibility){
+	list.forEach(az => d.i(`formElement_${az}`).value = "");
+	list.forEach(az => d.i(`row_${az}`).style.display = visibility);
+}
 
 function formSelectChanged(id){
 	let value = d.i(id).value;
 	cl(id, value);
 	if(id == "formElement_DOCKER_REGISTRY_TYPE" && value == "ECR") {
-		aws_list.forEach(e => d.i(e).style.display = "flex");
-	} else aws_list.forEach(e => d.i(e).style.display = "none");
+		toggleVisibility(aws_docker_list, "flex");
+	} else {
+		toggleVisibility(aws_docker_list, "none");
+	}
+
+	if(id == "formElement_STORAGE_ENGINE" && value == "AZURE") {
+		toggleVisibility(azure_file_list, "flex");
+	} else {
+		toggleVisibility(azure_file_list, "none");
+	}
 }
 formSelectChanged("formElement_DOCKER_REGISTRY_TYPE");

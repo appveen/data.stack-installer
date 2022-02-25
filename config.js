@@ -5,6 +5,7 @@ let config = {
 			"e": "MONGO_AUTHOR_URL",
 			"t": "text",
 			"d": null,
+			"r": true,
 			"h": "MongoDB standard connection URL, without options."
 		},
 		{
@@ -12,6 +13,7 @@ let config = {
 			"e": "MONGO_APPCENTER_URL",
 			"t": "text",
 			"d": null,
+			"r": true,
 			"h": "MongoDB standard connection URL, without options."
 		},
 		{
@@ -19,6 +21,7 @@ let config = {
 			"e": "MONGO_LOGS_URL",
 			"t": "text",
 			"d": null,
+			"r": true,
 			"h": "MongoDB standard connection URL, without options."
 		},
 		{
@@ -26,6 +29,7 @@ let config = {
 			"e": "MONGO_AUTHOR_DBNAME",
 			"t": "text",
 			"d": "datastackConfig",
+			"r": true,
 			"h": ""
 		},
 		{
@@ -33,6 +37,7 @@ let config = {
 			"e": "MONGO_LOGS_DBNAME",
 			"t": "text",
 			"d": "datastackLogs",
+			"r": true,
 			"h": ""
 		},
 		{
@@ -40,6 +45,7 @@ let config = {
 			"e": "MONGO_RECONN_TIME",
 			"t": "number",
 			"d": "1000",
+			"r": true,
 			"h": "Milliseconds to wait before attempting to reconnect to MongoDB."
 		},
 		{
@@ -47,6 +53,7 @@ let config = {
 			"e": "MONGO_RECONN_TRIES",
 			"t": "number",
 			"d": "21600",
+			"r": true,
 			"h": "Maximum number to attempts to reconnect."
 		}
 	],
@@ -55,22 +62,23 @@ let config = {
 			"l": "Connection URL",
 			"e": "MESSAGING_HOST",
 			"t": "text",
-			"d": "nats://messaging.appveen:4222", 
-			"h": null, 
+			"d": "nats://messaging.appveen:4222",
+			"r": true,
+			"h": null
 		},
 		{
 			"l": "Username",
 			"e": "MESSAGING_USER",
 			"t": "text",
-			"d": null, 
-			"h": null, 
+			"d": null,
+			"h": null
 		},
 		{
 			"l": "Password",
 			"e": "MESSAGING_PASS",
 			"t": "text",
-			"d": null, 
-			"h": null, 
+			"d": null,
+			"h": null
 		},
 		{
 			"l": "Max. reconnection attempts",
@@ -93,6 +101,7 @@ let config = {
 			"e": "CACHE_HOST",
 			"t": "text",
 			"d": "redis.appveen", 
+			"r": true,
 			"h": null, 
 		},
 		{
@@ -126,6 +135,14 @@ let config = {
 	],
 	"Docker": [
 		{
+			"l": "Registry server type",
+			"e": "DOCKER_REGISTRY_TYPE",
+			"t": "select",
+			"v": ["Default", "ECR", "GCR"],
+			"d": null,
+			"h": null
+		},
+		{
 			"l": "URL",
 			"e": "DOCKER_REGISTRY_SERVER",
 			"t": "text",
@@ -154,14 +171,6 @@ let config = {
 			"h": null
 		},
 		{
-			"l": "Registry server type",
-			"e": "DOCKER_REGISTRY_TYPE",
-			"t": "select",
-			"v": ["Default", "ECR", "GCR"],
-			"d": null,
-			"h": null
-		},
-		{
 			"l": "Container engine",
 			"e": "DOCKER_CONTAINER_ENGINE",
 			"t": "select",
@@ -181,6 +190,7 @@ let config = {
 			"e": "AWS_ACCESS_KEY_ID",
 			"t": "text",
 			"d": null,
+			"r": true,
 			"h": null
 		},
 		{
@@ -188,6 +198,7 @@ let config = {
 			"e": "AWS_SECRET_ACCESS_KEY",
 			"t": "text",
 			"d": null,
+			"r": true,
 			"h": null
 		},
 		{
@@ -195,6 +206,7 @@ let config = {
 			"e": "AWS_DEFAULT_REGION",
 			"t": "text",
 			"d": null,
+			"r": true,
 			"h": null
 		},
 	],
@@ -305,7 +317,7 @@ let config = {
 			"l": "Access-Control-Allow-Origin",
 			"e": "SEC_HEADER_ACCESS_CONTROL_ALLOW_ORIGIN",
 			"t": "text",
-			"d": null,
+			"d": "*",
 			"h": null
 		},
 		{
@@ -379,7 +391,48 @@ let config = {
 			"h": null
 		},
 	],
-	'File Storage': [],
+	'File Storage': [
+		{
+			"l": "Type",
+			"e": "STORAGE_ENGINE",
+			"t": "select",
+			"v": ["GRIDFS", "AZURE"],
+			"d": "GRIDFS",
+			"h": "Defines which storage option to use for storing files.",
+		},
+		{
+			"l": "Connection string",
+			"e": "STORAGE_AZURE_CONNECTION_STRING",
+			"t": "text",
+			"d": null,
+			"r": true,
+			"h": "Connection string to connect to Azure Storage Account.",
+		},
+		{
+			"l": "Container name",
+			"e": "STORAGE_AZURE_CONTAINER",
+			"t": "text",
+			"d": null,
+			"r": true,
+			"h": "Container to be used to store files in Azure Storage Account.",
+		},
+		{
+			"l": "Shared key",
+			"e": "STORAGE_AZURE_SHARED_KEY",
+			"t": "text",
+			"d": null,
+			"r": true,
+			"h": "Shared Key for the Azure Storage Account.",
+		},
+		{
+			"l": "Link validity (s)",
+			"e": "STORAGE_AZURE_TIMEOUT",
+			"t": "text",
+			"d": null,
+			"r": true,
+			"h": "Duration for which the download link will be active.",
+		},
+	],
 	'Hooks': [
 		{
 			"l": "Retry limit",
@@ -403,5 +456,232 @@ let config = {
 			"h": "Maximum number of parallel API request that will made to external system in case of Post/Workflow hooks."
 		}
 	],
-	'Misc': []
+	'Misc': [
+		{
+			"l": "API Timeout(s)",
+			"e": "API_REQUEST_TIMEOUT",
+			"t": "number",
+			"d": 120,
+			"h": "API request timeout for all incoming requests.",
+		},
+		{
+			"l": "Open bookmarks in new window",
+			"e": "BOOKMARK_OPEN_TAB",
+			"t": "checkbox",
+			"d": true,
+			"h": null
+		},
+		{
+			"l": "Certificate CN",
+			"e": "CERTIFICATE_COMMON_NAME",
+			"t": "text",
+			"d": "data.stack.appveen.com",
+			"h": null
+		},
+		{
+			"l": "Certificate Country",
+			"e": "CERTIFICATE_COUNTRY",
+			"t": "text",
+			"d": "IN",
+			"h": null
+		},
+		{
+			"l": "Certificate State",
+			"e": "CERTIFICATE_STATE",
+			"t": "text",
+			"d": "Karnataka",
+			"h": null
+		},
+		{
+			"l": "Certificate Locality",
+			"e": "CERTIFICATE_LOCALITY",
+			"t": "text",
+			"d": "Bangalore",
+			"h": null
+		},
+		{
+			"l": "Certificate Email",
+			"e": "CERTIFICATE_EMAIL",
+			"t": "text",
+			"d": "support@appveen.com",
+			"h": null
+		},
+		{
+			"l": "Certificate Organizaion",
+			"e": "CERTIFICATE_ORGANIZAION",
+			"t": "text",
+			"d": "appveen Techologies Pvt. Ltd.",
+			"h": null
+		},
+		{
+			"l": "Certificate Organization_unit",
+			"e": "CERTIFICATE_ORGANIZATION_UNIT",
+			"t": "text",
+			"d": "data.stack",
+			"h": null
+		},
+		{
+			"l": "Certificate Root_domain",
+			"e": "CERTIFICATE_ROOT_DOMAIN",
+			"t": "text",
+			"d": "appveen.com",
+			"h": null
+		},
+		{
+			"l": "Permitted file extensions",
+			"e": "DATA_STACK_ALLOWED_FILE_TYPE",
+			"t": "text",
+			"d": "jpeg,ppt,xls,csv,doc,jpg,png,gif,zip,tar,rar,gz,bz2,7z,mp4,mp3,pdf,ico,docx,pptx,xlsx,ods,xml,txt",
+			"h": null
+		},
+		{
+			"l": "Namespace",
+			"e": "DATA_STACK_NAMESPACE",
+			"t": "text",
+			"d": "appveen",
+			"h": "Kubernetes namespace where data.stack is deployed.",
+		},
+		{
+			"l": "Environment",
+			"e": "DATASTACKENV",
+			"t": "text",
+			"d": "K8s",
+			"h": null
+		},
+		{
+			"l": "Temp. file mountpath for data services",
+			"e": "DS_FS_MOUNT_PATH",
+			"t": "text",
+			"d": "/tmp/ds",
+			"h": "This is pure file system volume for the data service pods. The recommended path for this is <s>/tmp/ds<s> . All data services will share this path. We do not support the configuration involving Persistent Volumes and Persistent Volume Claims as of now.",
+		},
+		{
+			"l": "Encryption Key",
+			"e": "ENCRYPTION_KEY",
+			"t": "text",
+			"d": "aVerySecureEncryption_key@!#$^^123",
+			"h": "This key is used to encrypt sensitive data in the DB",
+		},
+		{
+			"l": "Function log retention (d)",
+			"e": "FAAS_LOGS_TTL_DAYS",
+			"t": "number",
+			"d": 30,
+			"h": "Retention time for Function logs."
+		},{
+			"l": "FQDN",
+			"e": "FQDN",
+			"t": "text",
+			"d": null,
+			"h": null
+		},
+		{
+			"l": "Google API key",
+			"e": "GOOGLE_API_KEY",
+			"t": "text",
+			"d": null,
+			"h": "This key is used for rendering maps",
+		},
+		{
+			"l": "SSL key size",
+			"e": "KEY_SIZE",
+			"t": "select",
+			"v": [2048, 4096],
+			"d": 4096,
+			"h": null
+		},
+		{
+			"l": "LOG_LEVEL",
+			"e": "LOG_LEVEL",
+			"t": "select",
+			"v": ["INFO", "ERROR", "DEBUG", "TRACE"],
+			"d": "INFO",
+			"h": null,
+		},
+		{
+			"l": "Max. File size",
+			"e": "MAX_FILE_SIZE",
+			"t": "text",
+			"d": "5MB",
+			"h": "Max. allowed file size to be uploaded.",
+		},
+		{
+			"l": "Max. JSON size",
+			"e": "MAX_JSON_SIZE",
+			"t": "text",
+			"d": "100kb",
+			"h": "Max. allowed JSON payload size.",
+		},
+		{
+			"l": "MODE",
+			"e": "MODE",
+			"t": "select",
+			"v": ["DEV", "PROD"],
+			"d": "PROD",
+			"h": null
+		},
+		{
+			"l": "Events hook",
+			"e": "NE_EVENTS_URL",
+			"t": "text",
+			"d": null,
+			"h": "URL where the data.stack events will be published.",
+		},
+		{
+			"l": "NODE_ENV",
+			"e": "NODE_ENV",
+			"t": "text",
+			"d": "text",
+			"h": "text",
+		},
+		{
+			"l": "Nodejs heap size",
+			"e": "NODE_MAX_HEAP_SIZE",
+			"t": "number",
+			"d": 4096,
+			"h": "Max heap size for generated data services."
+		},
+		{
+			"l": "Enable TLS on Proxy",
+			"e": "PROXY_ENABLE_TLS",
+			"t": "checkbox",
+			"d": true,
+			"h": "Run Proxy deployment on HTTP or HTTPs"
+		},
+		{
+			"l": "Release version",
+			"e": "RELEASE",
+			"t": "text",
+			"d": "2.0",
+			"h": null
+		},
+		{
+			"l": "Save mode for filters",
+			"e": "SAVE_FILTER_DEFAULT_MODE_PRIVATE",
+			"t": "checkbox",
+			"d": true,
+			"h": "text",
+		},
+		{
+			"l": "TLS_REJECT_UNAUTHORIZED",
+			"e": "TLS_REJECT_UNAUTHORIZED",
+			"t": "checkbox",
+			"d": false,
+			"h": "Allow/Deny data.stack to make connections requests to systems with expired or invalid certificates.",
+		},
+		{
+			"l": "Default timezone",
+			"e": "TZ_DEFAULT",
+			"t": "text",
+			"d": "Zulu",
+			"h": "Default timezone for apps.",
+		},
+		{
+			"l": "UI Logs TTL (s)",
+			"e": "UI_LOGS_TTL",
+			"t": "number",
+			"d": 172800,
+			"h": "Retention time for UI logs in seconds",
+		},
+	]
 }

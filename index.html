@@ -6,11 +6,10 @@
 	<title>data.stack Installer</title>
 	<link rel="stylesheet" href="bootstrap.min.css">
 	<link rel="stylesheet" href="style.css">
-	<script src="script.js"></script>
 </head>
 
 <body>
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
 			<div class="col mt-5">
 				<div class="card shadow-sm">
@@ -58,26 +57,27 @@
 								<span class="fs-4">Configurations</span>
 							</div>
 							<div class="col-2">
-								<div class="list-group">
-									<a href="#" class="list-group-item list-group-item-action">Database</a>
-									<a href="#" class="list-group-item list-group-item-action">Docker</a>
-									<a href="#" class="list-group-item list-group-item-action">Security</a>
-									<a href="#" class="list-group-item list-group-item-action">User management</a>
-									<a href="#" class="list-group-item list-group-item-action">File storage</a>
-									<a href="#" class="list-group-item list-group-item-action">Hooks</a>
-									<a href="#" class="list-group-item list-group-item-action">Misc.</a>
+								<div class="list-group" id="div_list_config_menu">
+									<a href="#" class="list-group-item list-group-item-action" onclick="configNavSelector('Database')">Database</a>
+									<a href="#" class="list-group-item list-group-item-action" onclick="configNavSelector('Docker')">Docker</a>
+									<a href="#" class="list-group-item list-group-item-action" onclick="configNavSelector('Security')">Security</a>
+									<a href="#" class="list-group-item list-group-item-action" onclick="configNavSelector('Access Control')">Access Control</a>
+									<a href="#" class="list-group-item list-group-item-action" onclick="configNavSelector('File Storage')">File Storage</a>
+									<a href="#" class="list-group-item list-group-item-action" onclick="configNavSelector('Hooks')">Hooks</a>
+									<a href="#" class="list-group-item list-group-item-action" onclick="configNavSelector('Misc')">Misc.</a>
 								</div>
 							</div>
-							<div class="col-10">
+							<div class="col-10" id="div_config_card">
 								<div class="card">
+									<div class="card-header fs-5">Database</div>
 									<div class="card-body">
 										<div class="row mb-3 align-items-center">
 											<label for="MONGO_AUTHOR_URL" class="col-sm-2 col-form-label">Author DB URL</label>
 											<div class="col-sm-4">
-												<input type="email" class="form-control form-control-sm" id="MONGO_AUTHOR_URL">
+												<input type="email" class="form-control form-control-sm" id="input_MONGO_AUTHOR_URL">
 											</div>
 											<div class="col-auto">
-												<span id="input_namespace" class="form-text">(MONGO_AUTHOR_URL)</span>
+												<span id="input_MONGO_AUTHOR_URL" class="form-text">(MONGO_AUTHOR_URL)</span>
 											</div>
 										</div>
 									</div>
@@ -94,289 +94,6 @@
 				</div>
 			</div>
 		</div>
-
-		<fieldset>
-			<legend>Database configurations</legend>
-			<p>
-				<label for="MONGO_APPCENTER_URL">MONGO_APPCENTER_URL</label>
-				<input type="text" name="MONGO_APPCENTER_URL" id="input_MONGO_APPCENTER_URL" autocomplete=false>
-				<span>MONGO_APPCENTER_URL</span>
-			</p>
-			<p>
-				<label for="MONGO_AUTHOR_DBNAME">MONGO_AUTHOR_DBNAME</label>
-				<input type="text" name="MONGO_AUTHOR_DBNAME" id="input_MONGO_AUTHOR_DBNAME" autocomplete=false
-					value="datastackConfig">
-				<span>MONGO_AUTHOR_DBNAME</span>
-			</p>
-			<p>
-				<label for="MONGO_AUTHOR_URL">MONGO_AUTHOR_URL</label>
-				<input type="text" name="MONGO_AUTHOR_URL" id="input_MONGO_AUTHOR_URL" autocomplete=false>
-				<span>MONGO_AUTHOR_URL</span>
-			</p>
-			<p>
-				<label for="MONGO_LOGS_URL">MONGO_LOGS_URL</label>
-				<input type="text" name="MONGO_LOGS_URL" id="input_MONGO_LOGS_URL" autocomplete=false>
-				<span>MONGO_LOGS_URL</span>
-			</p>
-			<p>
-				<label for="MONGO_LOGS_DBNAME">MONGO_LOGS_DBNAME</label>
-				<input type="text" name="MONGO_LOGS_DBNAME" id="input_MONGO_LOGS_DBNAME" autocomplete=false
-					default="datastackLogs">
-				<span>MONGO_LOGS_DBNAME</span>
-			</p>
-			<p>
-				<label for="MONGO_RECONN_TIME">MONGO_RECONN_TIME</label>
-				<input type="number" name="MONGO_RECONN_TIME" id="input_MONGO_RECONN_TIME" autocomplete=false value="1000">
-				<span>MONGO_RECONN_TIME</span>
-			</p>
-			<p>
-				<label for="MONGO_RECONN_TRIES">MONGO_RECONN_TRIES</label>
-				<input type="number" name="MONGO_RECONN_TRIES" id="input_MONGO_RECONN_TRIES" autocomplete=false value="21600">
-				<span>MONGO_RECONN_TRIES</span>
-			</p>
-		</fieldset>
-
-		<fieldset>
-			<legend>Messaging</legend>
-			<p>
-				<label>MESSAGING_HOST</label>
-				<input type="text" name="MESSAGING_HOST" id="input_MESSAGING_HOST" autocomplete="false">
-				<span>MESSAGING_HOST</span>
-			</p>
-			<p>
-				<label>MESSAGING_USER</label>
-				<input type="text" name="MESSAGING_USER" id="input_MESSAGING_USER" autocomplete="false">
-				<span>MESSAGING_USER</span>
-			</p>
-			<p>
-				<label>MESSAGING_PASS</label>
-				<input type="text" name="MESSAGING_PASS" id="input_MESSAGING_PASS" autocomplete="false">
-				<span>MESSAGING_PASS</span>
-			</p>
-			<p>
-				<label>MESSAGING_RECONN_ATTEMPTS</label>
-				<input type="text" name="MESSAGING_RECONN_ATTEMPTS" id="input_MESSAGING_RECONN_ATTEMPTS" autocomplete="false">
-				<span>MESSAGING_RECONN_ATTEMPTS</span>
-			</p>
-			<p>
-				<label>MESSAGING_RECONN_TIMEWAIT</label>
-				<input type="text" name="MESSAGING_RECONN_TIMEWAIT" id="input_MESSAGING_RECONN_TIMEWAIT" autocomplete="false">
-				<span>MESSAGING_RECONN_TIMEWAIT</span>
-			</p>
-		</fieldset>
-
-		<fieldset>
-			<legend>Cache</legend>
-			<p>
-				<label>CACHE_CLUSTER</label>
-				<input type="text" name="CACHE_CLUSTER" id="input_CACHE_CLUSTER" autocomplete="false">
-				<span>CACHE_CLUSTER</span>
-			</p>
-			<p>
-				<label>CACHE_HOST</label>
-				<input type="text" name="CACHE_HOST" id="input_CACHE_HOST" autocomplete="false">
-				<span>CACHE_HOST</span>
-			</p>
-			<p>
-				<label>CACHE_POST</label>
-				<input type="text" name="CACHE_POST" id="input_CACHE_POST" autocomplete="false">
-				<span>CACHE_POST</span>
-			</p>
-			<p>
-				<label>CACHE_RECONN_ATTEMPTS</label>
-				<input type="text" name="CACHE_RECONN_ATTEMPTS" id="input_CACHE_RECONN_ATTEMPTS" autocomplete="false">
-				<span>CACHE_RECONN_ATTEMPTS</span>
-			</p>
-			<p>
-				<label>CACHE_RECONN_TIMEWAIT</label>
-				<input type="text" name="CACHE_RECONN_TIMEWAIT" id="input_CACHE_RECONN_TIMEWAIT" autocomplete="false">
-				<span>CACHE_RECONN_TIMEWAIT</span>
-			</p>
-		</fieldset>
-
-		<fieldset>
-			<legend>Docker</legend>
-			<p>
-				<label>DOCKER_CONTAINER_ENGINE</label>
-				<input type="text" name="DOCKER_CONTAINER_ENGINE" id="input_DOCKER_CONTAINER_ENGINE" autocomplete="false">
-				<span>DOCKER_CONTAINER_ENGINE</span>
-			</p>
-			<p>
-				<label>DOCKER_CONTAINER_ENGINE_TLS_VERIFY</label>
-				<input type="text" name="DOCKER_CONTAINER_ENGINE_TLS_VERIFY" id="input_DOCKER_CONTAINER_ENGINE_TLS_VERIFY"
-					autocomplete="false">
-				<span>DOCKER_CONTAINER_ENGINE_TLS_VERIFY</span>
-			</p>
-			<p>
-				<label>DOCKER_CONTAINER_FORMAT</label>
-				<input type="text" name="DOCKER_CONTAINER_FORMAT" id="input_DOCKER_CONTAINER_FORMAT" autocomplete="false">
-				<span>DOCKER_CONTAINER_FORMAT</span>
-			</p>
-			<p>
-				<label>DOCKER_REGISTRY_TYPE</label>
-				<input type="text" name="DOCKER_REGISTRY_TYPE" id="input_DOCKER_REGISTRY_TYPE" autocomplete="false">
-				<span>DOCKER_REGISTRY_TYPE</span>
-			</p>
-			<p>
-				<label>DOCKER_REGISTRY_SERVER</label>
-				<input type="text" name="DOCKER_REGISTRY_SERVER" id="input_DOCKER_REGISTRY_SERVER" autocomplete="false">
-				<span>DOCKER_REGISTRY_SERVER</span>
-			</p>
-			<p>
-				<label>DOCKER_EMAIL</label>
-				<input type="text" name="DOCKER_EMAIL" id="input_DOCKER_EMAIL" autocomplete="false">
-				<span>DOCKER_EMAIL</span>
-			</p>
-			<p>
-				<label>DOCKER_USER</label>
-				<input type="text" name="DOCKER_USER" id="input_DOCKER_USER" autocomplete="false">
-				<span>DOCKER_USER</span>
-			</p>
-			<p>
-				<label>DOCKER_PASSWORD</label>
-				<input type="text" name="DOCKER_PASSWORD" id="input_DOCKER_PASSWORD" autocomplete="false">
-				<span>DOCKER_PASSWORD</span>
-			</p>
-			<p>
-				<label>AWS_ACCESS_KEY_ID</label>
-				<input type="text" name="AWS_ACCESS_KEY_ID" id="input_AWS_ACCESS_KEY_ID" autocomplete="false">
-				<span>AWS_ACCESS_KEY_ID</span>
-			</p>
-			<p>
-				<label>AWS_SECRET_ACCESS_KEY</label>
-				<input type="text" name="AWS_SECRET_ACCESS_KEY" id="input_AWS_SECRET_ACCESS_KEY" autocomplete="false">
-				<span>AWS_SECRET_ACCESS_KEY</span>
-			</p>
-			<p>
-				<label>AWS_DEFAULT_REGION</label>
-				<input type="text" name="AWS_DEFAULT_REGION" id="input_AWS_DEFAULT_REGION" autocomplete="false">
-				<span>AWS_DEFAULT_REGION</span>
-			</p>
-		</fieldset>
-
-		<fieldset>
-			<legend>Hooks</legend>
-			<p>
-				<label>HOOK_RETRY</label>
-				<input type="text" name="HOOK_RETRY" id="input_HOOK_RETRY" autocomplete="false">
-				<span>HOOK_RETRY</span>
-			</p>
-			<p>
-				<label>HOOK_CONNECTION_TIMEOUT</label>
-				<input type="text" name="HOOK_CONNECTION_TIMEOUT" id="input_HOOK_CONNECTION_TIMEOUT" autocomplete="false">
-				<span>HOOK_CONNECTION_TIMEOUT</span>
-			</p>
-			<p>
-				<label>HOOK_POST_BATCH</label>
-				<input type="text" name="HOOK_POST_BATCH" id="input_HOOK_POST_BATCH" autocomplete="false">
-				<span>HOOK_POST_BATCH</span>
-			</p>
-		</fieldset>
-
-		<fieldset>
-			<legend>User management</legend>
-			<p>
-				<label>RBAC_BOT_TOKEN_DURATION</label>
-				<input type="text" name="RBAC_BOT_TOKEN_DURATION" id="input_RBAC_BOT_TOKEN_DURATION" autocomplete="false">
-				<span>RBAC_BOT_TOKEN_DURATION</span>
-			</p>
-			<p>
-				<label>RBAC_HB_INTERVAL</label>
-				<input type="text" name="RBAC_HB_INTERVAL" id="input_RBAC_HB_INTERVAL" autocomplete="false">
-				<span>RBAC_HB_INTERVAL</span>
-			</p>
-			<p>
-				<label>RBAC_HB_MISS_COUNT</label>
-				<input type="text" name="RBAC_HB_MISS_COUNT" id="input_RBAC_HB_MISS_COUNT" autocomplete="false">
-				<span>RBAC_HB_MISS_COUNT</span>
-			</p>
-			<p>
-				<label>RBAC_PASSWORD_COMPLEXITY</label>
-				<input type="text" name="RBAC_PASSWORD_COMPLEXITY" id="input_RBAC_PASSWORD_COMPLEXITY" autocomplete="false">
-				<span>RBAC_PASSWORD_COMPLEXITY</span>
-			</p>
-			<p>
-				<label>RBAC_USER_CLOSE_WINDOW_TO_LOGOUT</label>
-				<input type="text" name="RBAC_USER_CLOSE_WINDOW_TO_LOGOUT" id="input_RBAC_USER_CLOSE_WINDOW_TO_LOGOUT"
-					autocomplete="false">
-				<span>RBAC_USER_CLOSE_WINDOW_TO_LOGOUT</span>
-			</p>
-			<p>
-				<label>RBAC_USER_RELOGIN_ACTION</label>
-				<input type="text" name="RBAC_USER_RELOGIN_ACTION" id="input_RBAC_USER_RELOGIN_ACTION" autocomplete="false">
-				<span>RBAC_USER_RELOGIN_ACTION</span>
-			</p>
-			<p>
-				<label>RBAC_USER_TO_SINGLE_SESSION</label>
-				<input type="text" name="RBAC_USER_TO_SINGLE_SESSION" id="input_RBAC_USER_TO_SINGLE_SESSION"
-					autocomplete="false">
-				<span>RBAC_USER_TO_SINGLE_SESSION</span>
-			</p>
-			<p>
-				<label>RBAC_USER_TOKEN_DURATION</label>
-				<input type="text" name="RBAC_USER_TOKEN_DURATION" id="input_RBAC_USER_TOKEN_DURATION" autocomplete="false">
-				<span>RBAC_USER_TOKEN_DURATION</span>
-			</p>
-			<p>
-				<label>RBAC_USER_TOKEN_REFRESH</label>
-				<input type="text" name="RBAC_USER_TOKEN_REFRESH" id="input_RBAC_USER_TOKEN_REFRESH" autocomplete="false">
-				<span>RBAC_USER_TOKEN_REFRESH</span>
-			</p>
-		</fieldset>
-
-		<fieldset>
-			<legend>Security</legend>
-			<p>
-				<label>SEC_HEADER_ACCESS_CONTROL_ALLOW_ORIGIN</label>
-				<input type="text" name="SEC_HEADER_ACCESS_CONTROL_ALLOW_ORIGIN"
-					id="input_SEC_HEADER_ACCESS_CONTROL_ALLOW_ORIGIN" autocomplete="false">
-				<span>SEC_HEADER_ACCESS_CONTROL_ALLOW_ORIGIN</span>
-			</p>
-			<p>
-				<label>SEC_HEADER_CACHE_CONTROL</label>
-				<input type="text" name="SEC_HEADER_CACHE_CONTROL" id="input_SEC_HEADER_CACHE_CONTROL" autocomplete="false">
-				<span>SEC_HEADER_CACHE_CONTROL</span>
-			</p>
-			<p>
-				<label>SEC_HEADER_CONTENT_SECURITY_POLICY</label>
-				<input type="text" name="SEC_HEADER_CONTENT_SECURITY_POLICY" id="input_SEC_HEADER_CONTENT_SECURITY_POLICY"
-					autocomplete="false">
-				<span>SEC_HEADER_CONTENT_SECURITY_POLICY</span>
-			</p>
-			<p>
-				<label>SEC_HEADER_SERVER</label>
-				<input type="text" name="SEC_HEADER_SERVER" id="input_SEC_HEADER_SERVER" autocomplete="false">
-				<span>SEC_HEADER_SERVER</span>
-			</p>
-			<p>
-				<label>SEC_HEADER_STRICT_TRANSPORT_SECURITY</label>
-				<input type="text" name="SEC_HEADER_STRICT_TRANSPORT_SECURITY" id="input_SEC_HEADER_STRICT_TRANSPORT_SECURITY"
-					autocomplete="false">
-				<span>SEC_HEADER_STRICT_TRANSPORT_SECURITY</span>
-			</p>
-			<p>
-				<label>SEC_HEADER_X_CONTENT_TYPE_OPTION</label>
-				<input type="text" name="SEC_HEADER_X_CONTENT_TYPE_OPTION" id="input_SEC_HEADER_X_CONTENT_TYPE_OPTION"
-					autocomplete="false">
-				<span>SEC_HEADER_X_CONTENT_TYPE_OPTION</span>
-			</p>
-			<p>
-				<label>SEC_HEADER_X_FRAME_OPTION</label>
-				<input type="text" name="SEC_HEADER_X_FRAME_OPTION" id="input_SEC_HEADER_X_FRAME_OPTION" autocomplete="false">
-				<span>SEC_HEADER_X_FRAME_OPTION</span>
-			</p>
-			<p>
-				<label>SEC_HEADER_X_POWERED_BY</label>
-				<input type="text" name="SEC_HEADER_X_POWERED_BY" id="input_SEC_HEADER_X_POWERED_BY" autocomplete="false">
-				<span>SEC_HEADER_X_POWERED_BY</span>
-			</p>
-			<p>
-				<label>SEC_HEADER_X_XSS_PROTECTION</label>
-				<input type="text" name="SEC_HEADER_X_XSS_PROTECTION" id="input_SEC_HEADER_X_XSS_PROTECTION"
-					autocomplete="false">
-				<span>SEC_HEADER_X_XSS_PROTECTION</span>
-			</p>
-		</fieldset>
 
 		<fieldset>
 			<legend>File storage</legend>
@@ -556,6 +273,9 @@
 		</fieldset>
 
 	</div>
+
+	<script src="config.js"></script>
+	<script src="script.js"></script>
 </body>
 
 </html>

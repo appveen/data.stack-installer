@@ -19,12 +19,12 @@ Object.keys(config).forEach(tab => {
 	cardBody.setAttribute("class", "card-body");
 
 	// <a href="#" class="list-group-item list-group-item-action" onclick="configNavSelector('Database')">Database</a>
-	let listGroupItem = d.createElement("a");
+	let listGroupItem = d.createElement("button");
 	listGroupItem.setAttribute("id", `list_config_menu_${tab}`);
-	listGroupItem.setAttribute("href", "#");
-	listGroupItem.setAttribute("class", "list-group-item list-group-item-action");
+	listGroupItem.setAttribute("class", "list-group-item d-flex justify-content-between align-items-center");
 	listGroupItem.addEventListener("click", () => configNavSelector(tab));
-	listGroupItem.innerHTML = tab;
+	listGroupItem.innerHTML = `${tab}
+	<span class="badge bg-danger rounded-pill float-end" id="list_config_menu_${tab}_error">!</span>`;
 	div_list_config_menu.appendChild(listGroupItem);
 
 	config[tab].forEach(c => {
@@ -32,15 +32,15 @@ Object.keys(config).forEach(tab => {
 		let label = d.createElement("label");
 		label.setAttribute("for", c.l);
 		label.setAttribute("class", "col-sm-2 col-form-label");
-		label.innerHTML = `${c.l}`;
-		if(c.r) label.innerHTML = `${c.l}<span class="text-danger">*</span>`;
+		label.innerHTML = `${c.l}<span class="text-danger" id="lable_required_${c.e}" style="display:none;">*</span>`;
+		if(c.r) label.innerHTML = `${c.l}<span class="text-danger" id="lable_required_${c.e}">*</span>`;
 		
 		let formElement = null;
 		// <select class="form-select form-select-sm" onchange="formSelectChanged()">
 		if(c.t == "select") {
 			formElement = d.createElement("select")
 			formElement.setAttribute("class", "form-select form-select-sm")
-			formElement.addEventListener("change", () => formSelectChanged(`formElement_${c.e}`));
+			formElement.addEventListener("change", () => formSelectChanged(c.e));
 			let option = d.createElement('option');
 			c.v.forEach(v => {
 				let clone = option.cloneNode();
@@ -116,6 +116,8 @@ function configHideAll(){
 	Object.keys(config).forEach(tab => {
 		let menu_item = d.i(`list_config_menu_${tab}`)
 		menu_item.setAttribute("class", "list-group-item list-group-item-action");
+		let menu_item_error = d.i(`list_config_menu_${tab}_error`);
+		menu_item_error.style.display = "none";
 		let card = d.i(`div_card_${tab}`);
 		card.style.display = "none";
 	});
@@ -129,11 +131,6 @@ function configNavSelector(id){
 	card.style.display = "flex";
 }
 configNavSelector("Database");
-// configNavSelector("Misc");
-
-function clearDockerData(){
-
-}
 
 function toggleVisibility(list, visibility){
 	list.forEach(az => d.i(`formElement_${az}`).value = "");
@@ -141,18 +138,62 @@ function toggleVisibility(list, visibility){
 }
 
 function formSelectChanged(id){
-	let value = d.i(id).value;
-	cl(id, value);
-	if(id == "formElement_DOCKER_REGISTRY_TYPE" && value == "ECR") {
-		toggleVisibility(aws_docker_list, "flex");
-	} else {
+	let formElement = `formElement_${id}`
+	let value = d.i(formElement).value;
+	if(id == "DOCKER_REGISTRY_TYPE") {
 		toggleVisibility(aws_docker_list, "none");
+		d.i(`lable_required_DOCKER_REGISTRY_SERVER`).style.display = "none";
+		aws_docker_list.forEach(aws => d.i(`lable_required_${aws}`).style.display = "none");
+		if(value == "ECR") {
+			toggleVisibility(aws_docker_list, "flex");
+			d.i(`lable_required_DOCKER_REGISTRY_SERVER`).style.display = "inline";
+			aws_docker_list.forEach(aws => d.i(`lable_required_${aws}`).style.display = "inline");
+		}
+		if(value == "GCR" || value == "Custom") {
+			d.i(`lable_required_DOCKER_REGISTRY_SERVER`).style.display = "inline";
+		}
 	}
 
-	if(id == "formElement_STORAGE_ENGINE" && value == "AZURE") {
-		toggleVisibility(azure_file_list, "flex");
-	} else {
+	if(id == "STORAGE_ENGINE") {
 		toggleVisibility(azure_file_list, "none");
+		azure_file_list.forEach(azure => d.i(`lable_required_${azure}`).style.display = "none");
+		if(value == "AZURE") {
+			toggleVisibility(azure_file_list, "flex");
+			azure_file_list.forEach(azure => d.i(`lable_required_${azure}`).style.display = "inline");
+		}
 	}
+
 }
-formSelectChanged("formElement_DOCKER_REGISTRY_TYPE");
+formSelectChanged("DOCKER_REGISTRY_TYPE");
+formSelectChanged("STORAGE_ENGINE");
+
+function validateConfigData(){
+	Object.keys(config).forEach(tab => {
+		let menu_item_error = d.i(`list_config_menu_${tab}_error`);
+		menu_item_error.style.display = "none";
+		config[tab].forEach(c => {
+			let formElementID = `formElement_${c.e}`;
+			let formElement = d.i(`formElement_${c.e}`);
+			if(c.r && !formElement.value){
+				menu_item_error.style.display = "inline-block";
+			}
+		});
+		if(tab == "Docker") {
+			let formElementID = `formElement_DOCKER_REGISTRY_TYPE`;
+			let formElement = d.i(`formElement_DOCKER_REGISTRY_TYPE`);
+			let value = formElement.value;
+			if(value == "ECR") {
+				toggleVisibility(aws_docker_list, "flex");
+				d.i(`lable_required_DOCKER_REGISTRY_SERVER`).style.display = "inline";
+				aws_docker_list.forEach(aws => d.i(`lable_required_${aws}`).style.display = "inline");
+			}
+			if(value == "GCR" || value == "Custom") {
+				d.i(`lable_required_DOCKER_REGISTRY_SERVER`).style.display = "inline";
+			}
+		}
+	});
+}
+
+function generateFiles(){
+	validateConfigData();
+}

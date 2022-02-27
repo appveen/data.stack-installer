@@ -12,7 +12,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col mt-5">
-				<div class="card shadow-sm">
+				<div class="card">
 					<div class="card-header fs-3">data.stack Installer</div>
 
 					<div class="card-body mt-2 mb-lg-4">
@@ -23,7 +23,7 @@
 							</div>
 							<div class="col-2">
 								<select class="form-select form-select-sm" id="releaseVersion" aria-describedby="select_release">
-									<option value="2.x" selected>2.x.x</option>
+									<option value="2.1.0" selected>2.1.0</option>
 								</select>
 							</div>
 							<div class="col-auto">
@@ -32,14 +32,10 @@
 							</div>
 						</div>
 
-						<div class="progress mb-3" style="height:2px;">
-							<div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0"
-								aria-valuemax="100"></div>
-						</div>
-
-						<div class="row g-3 align-items-top">
+						<div class="row g-3 align-items-top my-1" id="div_config">
 							<div class="col-12">
 								<span class="fs-4">Configurations</span>
+								<button id="button_generate" class="btn btn-dark float-end" onclick="generateFiles()">Generate install files</button>
 							</div>
 							<div class="col-2">
 								<div class="list-group" id="div_list_config_menu">
@@ -49,8 +45,13 @@
 							<div class="col-10" id="div_config_card">
 								<!-- auto generated content -->
 							</div>
+							<div class="col-12">
+							</div>
 						</div>
 
+						<div class="row g-3 align-items-top" id="div_generate">
+
+						</div>
 					</div>
 
 					<div class="card-footer text-center">

@@ -138,8 +138,8 @@ let config = {
 			"l": "Registry server type",
 			"e": "DOCKER_REGISTRY_TYPE",
 			"t": "select",
-			"v": ["Default", "ECR", "GCR"],
-			"d": null,
+			"v": ["-Nil-", "Custom" ,"ECR", "GCR"],
+			"d": "-Nil-",
 			"h": null
 		},
 		{
@@ -190,7 +190,6 @@ let config = {
 			"e": "AWS_ACCESS_KEY_ID",
 			"t": "text",
 			"d": null,
-			"r": true,
 			"h": null
 		},
 		{
@@ -198,7 +197,6 @@ let config = {
 			"e": "AWS_SECRET_ACCESS_KEY",
 			"t": "text",
 			"d": null,
-			"r": true,
 			"h": null
 		},
 		{
@@ -206,7 +204,6 @@ let config = {
 			"e": "AWS_DEFAULT_REGION",
 			"t": "text",
 			"d": null,
-			"r": true,
 			"h": null
 		},
 	],
@@ -405,7 +402,6 @@ let config = {
 			"e": "STORAGE_AZURE_CONNECTION_STRING",
 			"t": "text",
 			"d": null,
-			"r": true,
 			"h": "Connection string to connect to Azure Storage Account.",
 		},
 		{
@@ -413,7 +409,6 @@ let config = {
 			"e": "STORAGE_AZURE_CONTAINER",
 			"t": "text",
 			"d": null,
-			"r": true,
 			"h": "Container to be used to store files in Azure Storage Account.",
 		},
 		{
@@ -421,7 +416,6 @@ let config = {
 			"e": "STORAGE_AZURE_SHARED_KEY",
 			"t": "text",
 			"d": null,
-			"r": true,
 			"h": "Shared Key for the Azure Storage Account.",
 		},
 		{
@@ -429,7 +423,6 @@ let config = {
 			"e": "STORAGE_AZURE_TIMEOUT",
 			"t": "text",
 			"d": null,
-			"r": true,
 			"h": "Duration for which the download link will be active.",
 		},
 	],
@@ -476,6 +469,7 @@ let config = {
 			"e": "CERTIFICATE_COMMON_NAME",
 			"t": "text",
 			"d": "data.stack.appveen.com",
+			"r": true,
 			"h": null
 		},
 		{
@@ -483,6 +477,7 @@ let config = {
 			"e": "CERTIFICATE_COUNTRY",
 			"t": "text",
 			"d": "IN",
+			"r": true,
 			"h": null
 		},
 		{
@@ -490,6 +485,7 @@ let config = {
 			"e": "CERTIFICATE_STATE",
 			"t": "text",
 			"d": "Karnataka",
+			"r": true,
 			"h": null
 		},
 		{
@@ -497,6 +493,7 @@ let config = {
 			"e": "CERTIFICATE_LOCALITY",
 			"t": "text",
 			"d": "Bangalore",
+			"r": true,
 			"h": null
 		},
 		{
@@ -504,6 +501,7 @@ let config = {
 			"e": "CERTIFICATE_EMAIL",
 			"t": "text",
 			"d": "support@appveen.com",
+			"r": true,
 			"h": null
 		},
 		{
@@ -511,6 +509,7 @@ let config = {
 			"e": "CERTIFICATE_ORGANIZAION",
 			"t": "text",
 			"d": "appveen Techologies Pvt. Ltd.",
+			"r": true,
 			"h": null
 		},
 		{
@@ -518,6 +517,7 @@ let config = {
 			"e": "CERTIFICATE_ORGANIZATION_UNIT",
 			"t": "text",
 			"d": "data.stack",
+			"r": true,
 			"h": null
 		},
 		{
@@ -525,6 +525,7 @@ let config = {
 			"e": "CERTIFICATE_ROOT_DOMAIN",
 			"t": "text",
 			"d": "appveen.com",
+			"r": true,
 			"h": null
 		},
 		{
@@ -553,13 +554,14 @@ let config = {
 			"e": "DS_FS_MOUNT_PATH",
 			"t": "text",
 			"d": "/tmp/ds",
-			"h": "This is pure file system volume for the data service pods. The recommended path for this is <s>/tmp/ds<s> . All data services will share this path. We do not support the configuration involving Persistent Volumes and Persistent Volume Claims as of now.",
+			"h": "This is pure file system volume for the data service pods. The recommended path for this is <em>/tmp/ds</em> . All data services will share this path. We do not support the configuration involving Persistent Volumes and Persistent Volume Claims as of now.",
 		},
 		{
 			"l": "Encryption Key",
 			"e": "ENCRYPTION_KEY",
 			"t": "text",
 			"d": "aVerySecureEncryption_key@!#$^^123",
+			"r": true,
 			"h": "This key is used to encrypt sensitive data in the DB",
 		},
 		{

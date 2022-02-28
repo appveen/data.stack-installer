@@ -4,7 +4,7 @@ let config = {
 			"l": "Author DB URL",
 			"e": "MONGO_AUTHOR_URL",
 			"t": "text",
-			"d": null,
+			"d": "mongodb://localhost:27017",
 			"r": true,
 			"h": "MongoDB standard connection URL, without options."
 		},
@@ -12,7 +12,7 @@ let config = {
 			"l": "AppCenter DB URL",
 			"e": "MONGO_APPCENTER_URL",
 			"t": "text",
-			"d": null,
+			"d": "mongodb://localhost:27017",
 			"r": true,
 			"h": "MongoDB standard connection URL, without options."
 		},
@@ -20,7 +20,7 @@ let config = {
 			"l": "Logs DB URL",
 			"e": "MONGO_LOGS_URL",
 			"t": "text",
-			"d": null,
+			"d": "mongodb://localhost:27017",
 			"r": true,
 			"h": "MongoDB standard connection URL, without options."
 		},
@@ -42,7 +42,7 @@ let config = {
 		},
 		{
 			"l": "Reconnection wait time (ms)",
-			"e": "MONGO_RECONN_TIME",
+			"e": "MONGO_RECONN_TIME_MILLI",
 			"t": "number",
 			"d": "1000",
 			"r": true,
@@ -55,41 +55,56 @@ let config = {
 			"d": "21600",
 			"r": true,
 			"h": "Maximum number to attempts to reconnect."
+		},
+		{
+			"l": "DB connection pool size",
+			"e": "MONGO_CONNECTION_POOL_SIZE",
+			"t": "number",
+			"d": "5",
+			"h": null
 		}
 	],
-	'Messaging': [
+	'Streaming': [
 		{
 			"l": "Connection URL",
-			"e": "MESSAGING_HOST",
+			"e": "STREAMING_HOST",
 			"t": "text",
-			"d": "nats://messaging.appveen:4222",
+			"d": "nats://streaming.appveen:4222",
 			"r": true,
 			"h": null
 		},
 		{
 			"l": "Username",
-			"e": "MESSAGING_USER",
+			"e": "STREAMING_USER",
 			"t": "text",
 			"d": null,
 			"h": null
 		},
 		{
 			"l": "Password",
-			"e": "MESSAGING_PASS",
+			"e": "STREAMING_PASS",
 			"t": "text",
 			"d": null,
 			"h": null
 		},
 		{
+			"l": "Channel name",
+			"e": "STREAMING_CHANNEL",
+			"t": "text",
+			"d": "datastack-cluster",
+			"r": true,
+			"h": null
+		},
+		{
 			"l": "Max. reconnection attempts",
-			"e": "MESSAGING_RECONN_ATTEMPTS",
+			"e": "STREAMING_RECONN_ATTEMPTS",
 			"t": "number",
 			"d": 500, 
 			"h": "Maximum number to attempts to reconnect.", 
 		},
 		{
 			"l": "Reconnection wait time (ms)",
-			"e": "MESSAGING_RECONN_TIMEWAIT",
+			"e": "STREAMING_RECONN_TIMEWAIT_MILLI",
 			"t": "number",
 			"d": 500, 
 			"h": "Time to wait before attempting to reconnect.", 
@@ -100,13 +115,13 @@ let config = {
 			"l": "Cache URL",
 			"e": "CACHE_HOST",
 			"t": "text",
-			"d": "redis.appveen", 
+			"d": "cache.appveen", 
 			"r": true,
 			"h": null, 
 		},
 		{
 			"l": "Cache port",
-			"e": "CACHE_POST",
+			"e": "CACHE_PORT",
 			"t": "number",
 			"d": "6397", 
 			"h": null, 
@@ -116,7 +131,7 @@ let config = {
 			"e": "CACHE_CLUSTER",
 			"t": "text",
 			"d": null, 
-			"h": "Redis cluster URL in the format ip:port,ip:port. If set then this will be used instead of <code>CACHE_HOST</code> and <code>CACHE_PORT</code>.", 
+			"h": "Cache cluster URL in the format ip:port,ip:port. If set then this will be used instead of <code>CACHE_HOST</code> and <code>CACHE_PORT</code>.", 
 		},
 		{
 			"l": "Max. reconnection attempts",
@@ -127,7 +142,7 @@ let config = {
 		},
 		{
 			"l": "Reconnection wait time (ms)",
-			"e": "CACHE_RECONN_TIMEWAIT",
+			"e": "CACHE_RECONN_TIMEWAIT_MILLI",
 			"t": "number",
 			"d": 500, 
 			"h": "Time to wait before attempting to reconnect.", 
@@ -175,6 +190,14 @@ let config = {
 			"e": "DOCKER_CONTAINER_ENGINE",
 			"t": "select",
 			"v": ["docker", "podman"],
+			"d": "docker",
+			"h": null
+		},
+		{
+			"l": "Container format",
+			"e": "DOCKER_CONTAINER_FORMAT",
+			"t": "select",
+			"v": ["docker", "oci"],
 			"d": "docker",
 			"h": null
 		},
@@ -259,7 +282,7 @@ let config = {
 		},
 		{
 			"l": "Auth. mode",
-			"e": "RBAC_USER_AUTH_MODE",
+			"e": "RBAC_USER_AUTH_MODES",
 			"t": "select",
 			"v": ["local"],
 			"d": "local",
@@ -349,7 +372,7 @@ let config = {
 			"l": "Server",
 			"e": "SEC_HEADER_SERVER",
 			"t": "text",
-			"d": "data.stack/2.0",
+			"d": "data.stack/2.1.0",
 			"h": null
 		},
 		{
@@ -458,6 +481,20 @@ let config = {
 			"h": "API request timeout for all incoming requests.",
 		},
 		{
+			"l": "API Methods to log",
+			"e": "API_LOGS_METHODS",
+			"t": "text",
+			"d": "POST,PUT,DELETE",
+			"h": "Only the above API methods would be logged.",
+		},
+		{
+			"l": "API logs retention (days)",
+			"e": "API_LOGS_TTL_DAYS",
+			"t": "number",
+			"d": 30,
+			"h": "Number of days to retain API logs.",
+		},
+		{
 			"l": "Open bookmarks in new window",
 			"e": "BOOKMARK_OPEN_TAB",
 			"t": "checkbox",
@@ -505,8 +542,8 @@ let config = {
 			"h": null
 		},
 		{
-			"l": "Certificate Organizaion",
-			"e": "CERTIFICATE_ORGANIZAION",
+			"l": "Certificate Organization",
+			"e": "CERTIFICATE_ORGANIZATION",
 			"t": "text",
 			"d": "appveen Techologies Pvt. Ltd.",
 			"r": true,
@@ -548,6 +585,20 @@ let config = {
 			"t": "text",
 			"d": "K8s",
 			"h": null
+		},
+		{
+			"l": "LDAP connection timeout",
+			"e": "DIRECTORY_CONNECTION_TIMEOUT_MILLI",
+			"t": "number",
+			"d": 10000,
+			"h": "Time to wait for establishing an LDAP connection."
+		},
+		{
+			"l": "LDAP max records to fetch",
+			"e": "DIRECTORY_RECORD_FETCH_TIME_LIMIT",
+			"t": "number",
+			"d": 20,
+			"h": "Max. number of records to fetch per LDAP query."
 		},
 		{
 			"l": "Temp. file mountpath for data services",
@@ -686,4 +737,20 @@ let config = {
 			"h": "Retention time for UI logs in seconds",
 		},
 	]
+};
+
+let yamlFiles = {
+	"Common": "common",
+	"Deployment manager": "dm",
+	"Gateway": "gw",
+	"Monitoring": "mon",
+	"Notification engine": "ne",
+	"Partner manager": "pm",
+	"Proxy": "proxy",
+	"Service manager": "sm",
+	"User": "user",
+	"Messaging": "messaging",
+	"Cache": "cache",
+	"Config Map": "config",
+	"Service Account": "serviceAccount",
 }

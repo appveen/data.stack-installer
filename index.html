@@ -35,22 +35,37 @@
 						<div class="row g-3 align-items-top my-1" id="div_config">
 							<div class="col-12">
 								<span class="fs-4">Configurations</span>
-								<button id="button_generate" class="btn btn-dark float-end" onclick="generateFiles()">Generate install files</button>
+								<button id="button_generate" class="btn btn-primary float-end" onclick="generateFiles()">Generate install files</button>
 							</div>
 							<div class="col-2">
-								<div class="list-group" id="div_list_config_menu">
+								<div class="list-group shadow-sm" id="div_list_config_menu">
 									<!-- auto generated content -->
 								</div>
 							</div>
 							<div class="col-10" id="div_config_card">
 								<!-- auto generated content -->
 							</div>
-							<div class="col-12">
-							</div>
 						</div>
 
-						<div class="row g-3 align-items-top" id="div_generate">
-
+						<div class="row g-3 align-items-top my-1" id="div_generate">
+							<div class="col-12">
+								<span class="fs-4">Files and Commands</span>
+								<button id="button_download_all" class="btn btn-success float-end" onclick="downloadAllFiles()">Download All</button>
+							</div>
+							<div class="col-2">
+								<div class="list-group shadow-sm" id="div_generate_menu">
+									<!-- auto generated content -->
+								</div>
+							</div>
+							<div class="col-5" id="div_generate_card">
+								<!-- auto generated content -->
+							</div>
+							<div class="col-5" id="div_generate_commands">
+								<div class="card shadow-sm">
+									<div class="card-header">Installation Commands</div>
+									<div class="card-body" id="div_generate_commands_body"></div>
+								</div>
+							</div>
 						</div>
 					</div>
 
@@ -64,6 +79,22 @@
 
 	</div>
 
+	<script src="jszip.min.js"></script>
+	<script src="icons.js"></script>
+	<script src="yaml.common.js"></script>
+	<script src="yaml.dm.js"></script>
+	<script src="yaml.gw.js"></script>
+	<script src="yaml.mon.js"></script>
+	<script src="yaml.ne.js"></script>
+	<script src="yaml.pm.js"></script>
+	<script src="yaml.proxy.js"></script>
+	<script src="yaml.sm.js"></script>
+	<script src="yaml.user.js"></script>
+	<script src="yaml.config.js"></script>
+	<script src="yaml.cache.js"></script>
+	<script src="yaml.streaming.js"></script>
+	<script src="yaml.SA.js"></script>
+	<script src="commands.js"></script>
 	<script src="config.js"></script>
 	<script src="script.js"></script>
 </body>
